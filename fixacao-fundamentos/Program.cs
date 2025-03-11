@@ -1,4 +1,6 @@
-﻿namespace fixacao_fundamentos
+﻿using Aula2_1bim;
+
+namespace fixacao_fundamentos
 {
     class Program
     {
@@ -17,6 +19,9 @@
                         Console.WriteLine("Exiting the program !");
                         run = false;
                         break;
+                     case 1:
+                        Aula2_1bim.SomarNumerosApp.run();
+                        break;
                     default:
                         Console.WriteLine("Invalid option");
                         break;
@@ -31,7 +36,7 @@
         public static void printMenuExercises()
         {
             Console.WriteLine("\n--- Exercicios De Fixacao Menu ---");
-            Console.WriteLine("1. Somar dois numeros");
+            Console.WriteLine("1. Somar Numeros");
         }
     }
 }
