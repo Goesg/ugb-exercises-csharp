@@ -1,6 +1,6 @@
-﻿using static fixacao_fundamentos.MenuOption;
+﻿using static FixacaoFundamentos.MenuOption;
 
-namespace fixacao_fundamentos
+namespace FixacaoFundamentos
 {
     class Program
     {

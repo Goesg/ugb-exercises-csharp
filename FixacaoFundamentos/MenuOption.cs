@@ -1,4 +1,4 @@
-namespace fixacao_fundamentos;
+namespace FixacaoFundamentos;
 
 public enum MenuOption
 {
