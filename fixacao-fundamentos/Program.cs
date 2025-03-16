@@ -1,42 +1,60 @@
 ﻿using Aula2_1bim;
+using static Aula2_1bim.SomarNumerosApp;
+using static fixacao_fundamentos.MenuOption;
 
 namespace fixacao_fundamentos
 {
     class Program
     {
+        private static bool run = true;
+
         public static void Main(string[] args)
         {
-            Boolean run = true;
+            ExecuteProgram();
+        }
 
-            while(run)
+        private static void ExecuteProgram()
+        {
+            while (run)
             {
-                Menu.printMenuExercises();
-                int option = Convert.ToInt32(Console.ReadLine());
+                Menu.PrintMenuExercises();
 
-                switch (option)
+                switch (Menu.GetMenuOption())
                 {
-                    case 0:
-                        Console.WriteLine("Exiting the program !");
-                        run = false;
+                    case EXIT:
+                        ExitProgram();
                         break;
-                     case 1:
-                        Aula2_1bim.SomarNumerosApp.run();
+                    case SOMAR_NUMEROS:
+                        SomarNumerosApp.run();
                         break;
                     default:
                         Console.WriteLine("Invalid option");
                         break;
                 }
-               
+
             }
+        }
+
+        private static void ExitProgram()
+        {
+            Console.WriteLine("Exiting the program !");
+            run = false;
         }
     }
 
     class Menu
     {
-        public static void printMenuExercises()
+        public static void PrintMenuExercises()
         {
-            Console.WriteLine("\n--- Exercicios De Fixacao Menu ---");
+            Console.WriteLine("\n--- Menu Exercicios De Fixacao C-sharp [Diego Goes] ---");
             Console.WriteLine("1. Somar Numeros");
         }
+
+        public static MenuOption GetMenuOption()
+        {
+            int inputOptionValue = Convert.ToInt32(Console.ReadLine());
+            return (MenuOption)inputOptionValue;
+        }
+
     }
 }
