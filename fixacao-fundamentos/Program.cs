@@ -1,6 +1,4 @@
-﻿using Aula2_1bim;
-using static Aula2_1bim.SomarNumerosApp;
-using static fixacao_fundamentos.MenuOption;
+﻿using static fixacao_fundamentos.MenuOption;
 
 namespace fixacao_fundamentos
 {
@@ -25,7 +23,6 @@ namespace fixacao_fundamentos
                         ExitProgram();
                         break;
                     case SOMAR_NUMEROS:
-                        SomarNumerosApp.run();
                         break;
                     default:
                         Console.WriteLine("Invalid option");
