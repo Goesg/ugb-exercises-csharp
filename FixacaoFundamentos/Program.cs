@@ -1,5 +1,6 @@
 ﻿using static FixacaoFundamentos.MenuOption;
-using ExecSomarNumerosApp;
+using System;
+using System.Diagnostics;
 
 namespace FixacaoFundamentos
 {
@@ -24,6 +25,7 @@ namespace FixacaoFundamentos
                         ExitProgram();
                         break;
                     case SOMAR_NUMEROS:
+                        Process.Start("dotnet", "run --project ../ExecSomarNumerosApp/ExecSomarNumerosApp.csproj");
                         break;
                     default:
                         Console.WriteLine("Invalid option");
