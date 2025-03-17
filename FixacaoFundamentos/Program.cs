@@ -9,6 +9,7 @@ namespace FixacaoFundamentos
     class Program
     {
         private static bool run = true;
+        private const string EXEC_SOMAR_NUMERO_APP_INSTANCE = "somarNumerosAppInstance";
 
         public static void Main(string[] args)
         {
@@ -30,7 +31,7 @@ namespace FixacaoFundamentos
                         ExitProgram();
                         break;
                     case SOMAR_NUMEROS:
-                        exerciseApp = serviceProvider.GetRequiredService<IExercise>();
+                        exerciseApp = serviceProvider.GetRequiredKeyedService<IExercise>(EXEC_SOMAR_NUMERO_APP_INSTANCE);
                         break;
                     default:
                         Console.WriteLine("Invalid option");
@@ -49,7 +50,7 @@ namespace FixacaoFundamentos
         private static ServiceProvider BuildContainerDependency()
         {
             return new ServiceCollection()
-            .AddSingleton<IExercise, SomarNumerosApp>()
+            .AddKeyedSingleton<IExercise, SomarNumerosApp>(EXEC_SOMAR_NUMERO_APP_INSTANCE)
             .BuildServiceProvider();
         }
 
