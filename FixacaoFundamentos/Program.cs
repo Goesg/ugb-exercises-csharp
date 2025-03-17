@@ -1,5 +1,8 @@
 ﻿using static FixacaoFundamentos.MenuOption;
 using ExercisesApp;
+using System;
+using Microsoft.Extensions.DependencyInjection;
+using ExercisesCore;
 
 namespace FixacaoFundamentos
 {
@@ -14,6 +17,9 @@ namespace FixacaoFundamentos
 
         private static void ExecuteProgram()
         {
+            var serviceProvider = BuildContainerDependency();
+            IExercise exerciseApp = GetEmptyIExercise();
+
             while (run)
             {
                 Menu.PrintMenuExercises();
@@ -24,15 +30,32 @@ namespace FixacaoFundamentos
                         ExitProgram();
                         break;
                     case SOMAR_NUMEROS:
-                        var somarNumerosApp = new SomarNumerosApp();
-                        somarNumerosApp.run();
+                        exerciseApp = serviceProvider.GetRequiredService<IExercise>();
                         break;
                     default:
                         Console.WriteLine("Invalid option");
                         break;
                 }
 
+                if (exerciseApp == null)
+                {
+                    continue;
+                }
+
+                exerciseApp.run();
             }
+        }
+
+        private static ServiceProvider BuildContainerDependency()
+        {
+            return new ServiceCollection()
+            .AddSingleton<IExercise, SomarNumerosApp>()
+            .BuildServiceProvider();
+        }
+
+        private static IExercise GetEmptyIExercise()
+        {
+            return null;
         }
 
         private static void ExitProgram()
