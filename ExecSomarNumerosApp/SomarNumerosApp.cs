@@ -1,10 +1,12 @@
-﻿namespace Exercises
+﻿using ExercisesCore;
+
+namespace ExercisesApp
 {
-    public class SomarNumerosApp
+    public class SomarNumerosApp: IExercise
     {
         public void run()
         {
-            Console.WriteLine("Init Projeto Somar Numeros Library");
+            Console.WriteLine("Running ::: exercicio somar numeros");
         }
     }
 }

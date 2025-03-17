@@ -1,5 +1,5 @@
 ﻿using static FixacaoFundamentos.MenuOption;
-using Exercises;
+using ExercisesApp;
 
 namespace FixacaoFundamentos
 {

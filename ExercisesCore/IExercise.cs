@@ -2,7 +2,7 @@
 {
     public interface IExercise
     {
-        void execute();
+        void run();
     }
 
 }
