@@ -17,7 +17,7 @@ public class ExerciseUgbFactory : IExerciseFactory
 
     public IExercise GetExercise(ExerciseOption option)
     {
-        return _exercises.FirstOrDefault(e => e.GetType().Name == option.GetApplicationName()) 
+        return _exercises.FirstOrDefault(exerciseImpl => exerciseImpl.GetType().Name == option.GetApplicationName()) 
                ?? throw new Exception("Exercício não encontrado.");
     }
 }
