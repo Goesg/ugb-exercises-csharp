@@ -8,7 +8,7 @@ namespace FixacaoFundamentos
     {
         private static bool run = true;
         private const int EXIT_PROGRAM_OPTION = 0;
-        private static RunnerExercise Runner = new RunnerExercise();
+        private readonly static RunnerExercise runner = new();
 
         public static void Main(string[] args)
         {
@@ -22,8 +22,8 @@ namespace FixacaoFundamentos
                 Menu.PrintMenuExercises();
                 int menuOption = Menu.GetInputOption();
 
-                if (!EXIT_PROGRAM_OPTION.Equals(menuOption)) ExecuteExercise(menuOption);
-                else ExitProgram();
+                if (EXIT_PROGRAM_OPTION.Equals(menuOption)) ExitProgram();
+                else ExecuteExercise(menuOption);
             }
         }
 
@@ -31,13 +31,12 @@ namespace FixacaoFundamentos
         {
             try
             {
-                Runner.Execute(ExerciseOptionHelper.GetByValue(menuOption));
+                runner.Execute(ExerciseOptionHelper.GetByValue(menuOption));
             }
             catch (Exception)
             {
                 Console.WriteLine("Nenhum exercício encontrado para esta opção. Por favor, escolha um número válido exibido no menu.");
             }
-
         }
 
         private static void ExitProgram()
