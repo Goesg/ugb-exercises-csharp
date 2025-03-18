@@ -7,10 +7,11 @@ namespace ExerciseApplication.DependencyInjection;
 
 public class ApplicationContainerService
 {
-       public ServiceProvider BuildContainerDependency()
+       public static ServiceProvider LoadContainerDependency()
         {
             return new ServiceCollection()
-            .AddSingleton<IExercise, SomarNumerosApp>()
+            .AddSingleton<SomarNumerosApp>()
+            .AddSingleton<IExerciseFactory, ExerciseUgbFactory>()
             .BuildServiceProvider();
         }
 

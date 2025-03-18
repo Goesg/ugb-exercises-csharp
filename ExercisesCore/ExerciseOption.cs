@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace ExercisesCore;
 
 public enum ExerciseOption
