@@ -8,19 +8,16 @@ namespace ExerciseApplication;
 public class ExerciseUgbFactory : IExerciseFactory
 {
 
-    private readonly IServiceProvider _serviceProvider;
+    private readonly IEnumerable<IExercise> _exercises;
 
-    public ExerciseUgbFactory(IServiceProvider serviceProvider)
+    public ExerciseUgbFactory(IEnumerable<IExercise> exercises)
     {
-        _serviceProvider = serviceProvider;
+         _exercises = exercises;
     }
 
     public IExercise GetExercise(ExerciseOption option)
     {
-        return option switch
-        {
-            SOMAR_NUMEROS_APP => _serviceProvider.GetRequiredService<SomarNumerosApp>(),
-            _ => throw new Exception("Exercício não encontrado.")
-        };
+        return _exercises.FirstOrDefault(e => e.GetType().Name == option.GetApplicationName()) 
+               ?? throw new Exception("Exercício não encontrado.");
     }
 }

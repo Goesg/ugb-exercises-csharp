@@ -14,7 +14,7 @@ public class RunnerExercise
         try
         {
             IExercise exerciseApp = GetExerciseFactory().GetExercise(exercise);
-            exerciseApp.run();
+            exerciseApp.Run();
         }
         catch (Exception ex)
         {

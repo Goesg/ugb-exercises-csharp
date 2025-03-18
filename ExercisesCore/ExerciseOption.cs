@@ -15,4 +15,13 @@ public static class ExerciseOptionHelper
             _ => throw new Exception("Exercise not found")
         };
     }
+
+    public static string GetApplicationName(this ExerciseOption option)
+    {
+        return option switch
+        {
+            ExerciseOption.SOMAR_NUMEROS_APP => "SomarNumerosApp",
+            _ => "InvalidApp"
+        };
+    }
 }

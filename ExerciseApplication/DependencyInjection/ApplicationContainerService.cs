@@ -10,7 +10,7 @@ public class ApplicationContainerService
        public static ServiceProvider LoadContainerDependency()
         {
             return new ServiceCollection()
-            .AddSingleton<SomarNumerosApp>()
+            .AddSingleton<IExercise, SomarNumerosApp>()
             .AddSingleton<IExerciseFactory, ExerciseUgbFactory>()
             .BuildServiceProvider();
         }
