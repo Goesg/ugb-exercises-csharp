@@ -21,15 +21,23 @@ namespace FixacaoFundamentos
                 Menu.PrintMenuExercises();
                 int menuOption = Menu.GetInputOption();
 
-                if (!EXIT_PROGRAM_OPTION.Equals(menuOption))
-                {
-                    RunnerExercise runner = new RunnerExercise();
-                    runner.Execute((ExerciseOption)menuOption);
-                }else
-                {
-                    ExitProgram();   
-                }
+                if (!EXIT_PROGRAM_OPTION.Equals(menuOption)) ExecuteExercise(menuOption);
+                else ExitProgram();
             }
+        }
+
+        private static void ExecuteExercise(int menuOption)
+        {
+            try
+            {
+                RunnerExercise runner = new RunnerExercise();
+                runner.Execute(ExerciseOptionHelper.GetByValue(menuOption));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Nenhum exercício encontrado para esta opção. Por favor, escolha um número válido exibido no menu.");
+            }
+
         }
 
         private static void ExitProgram()
@@ -51,7 +59,7 @@ namespace FixacaoFundamentos
         {
             while (true)
             {
-                Console.Write("Escolha um opção do menu: ");
+                Console.Write("Escolha uma opção do menu: ");
                 string? inputOption = Console.ReadLine();
 
                 if (string.IsNullOrWhiteSpace(inputOption))
@@ -66,7 +74,7 @@ namespace FixacaoFundamentos
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("[FormatException] Entrada inválida. Insira um número válido.");
+                    Console.WriteLine("[FormatException] Entrada inválida. Por favor, digite um número.");
                 }
                 catch (OverflowException)
                 {
@@ -78,7 +86,6 @@ namespace FixacaoFundamentos
                 }
             }
         }
-
 
     }
 }
