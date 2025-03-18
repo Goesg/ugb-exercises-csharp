@@ -4,7 +4,7 @@ namespace ExercisesApp
 {
     public class SomarNumerosApp: IExercise
     {
-        public void run()
+        public void Run()
         {
             Console.WriteLine("Running ::: exercicio somar numeros");
         }
