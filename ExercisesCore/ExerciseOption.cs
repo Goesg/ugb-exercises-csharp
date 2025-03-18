@@ -2,5 +2,5 @@ namespace ExercisesCore;
 
 public enum ExerciseOption
 {
-    SOMAR_NUMEROS_APP
+    SOMAR_NUMEROS_APP = 1
 }

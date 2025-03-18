@@ -1,15 +1,13 @@
-﻿using static FixacaoFundamentos.MenuOption;
-using ExercisesApp;
-using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using System;
 using ExercisesCore;
+using ExerciseApplication;
 
 namespace FixacaoFundamentos
 {
     class Program
     {
         private static bool run = true;
-        private const string EXEC_SOMAR_NUMERO_APP_INSTANCE = "somarNumerosAppInstance";
+        private const int EXIT_PROGRAM_OPTION = 0;
 
         public static void Main(string[] args)
         {
@@ -18,45 +16,20 @@ namespace FixacaoFundamentos
 
         private static void ExecuteProgram()
         {
-            var serviceProvider = BuildContainerDependency();
-            IExercise exerciseApp = GetEmptyIExercise();
-
             while (run)
             {
                 Menu.PrintMenuExercises();
+                int menuOption = Menu.GetInputOption();
 
-                switch (Menu.GetMenuOption())
+                if (!EXIT_PROGRAM_OPTION.Equals(menuOption))
                 {
-                    case EXIT:
-                        ExitProgram();
-                        break;
-                    case SOMAR_NUMEROS:
-                        exerciseApp = serviceProvider.GetRequiredKeyedService<IExercise>(EXEC_SOMAR_NUMERO_APP_INSTANCE);
-                        break;
-                    default:
-                        Console.WriteLine("Invalid option");
-                        break;
-                }
-
-                if (exerciseApp == null)
+                    RunnerExercise runner = new RunnerExercise();
+                    runner.Execute((ExerciseOption)menuOption);
+                }else
                 {
-                    continue;
+                    ExitProgram();   
                 }
-
-                exerciseApp.run();
             }
-        }
-
-        private static ServiceProvider BuildContainerDependency()
-        {
-            return new ServiceCollection()
-            .AddKeyedSingleton<IExercise, SomarNumerosApp>(EXEC_SOMAR_NUMERO_APP_INSTANCE)
-            .BuildServiceProvider();
-        }
-
-        private static IExercise GetEmptyIExercise()
-        {
-            return null;
         }
 
         private static void ExitProgram()
@@ -74,11 +47,38 @@ namespace FixacaoFundamentos
             Console.WriteLine("1. Somar Numeros");
         }
 
-        public static MenuOption GetMenuOption()
+        public static int GetInputOption()
         {
-            int inputOptionValue = Convert.ToInt32(Console.ReadLine());
-            return (MenuOption)inputOptionValue;
+            while (true)
+            {
+                Console.Write("Escolha um opção do menu: ");
+                string? inputOption = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(inputOption))
+                {
+                    Console.WriteLine("Entrada inválida. Por favor, digite um número.");
+                    continue;
+                }
+
+                try
+                {
+                    return Convert.ToInt32(inputOption);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("[FormatException] Entrada inválida. Insira um número válido.");
+                }
+                catch (OverflowException)
+                {
+                    Console.WriteLine("[OverflowException] Entrada inválida. Insira um número válido.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Unexpected error: {ex.Message}");
+                }
+            }
         }
+
 
     }
 }

@@ -7,6 +7,6 @@ public class RunnerExercise
 {
     public void Execute(ExerciseOption exercise)
     {
-
+            Console.WriteLine("EXECUTANDOOOOOOOOOOOOOOOOOOo" + exercise);
     }
 }
