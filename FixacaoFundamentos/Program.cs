@@ -8,6 +8,7 @@ namespace FixacaoFundamentos
     {
         private static bool run = true;
         private const int EXIT_PROGRAM_OPTION = 0;
+        private static RunnerExercise Runner = new RunnerExercise();
 
         public static void Main(string[] args)
         {
@@ -30,8 +31,7 @@ namespace FixacaoFundamentos
         {
             try
             {
-                RunnerExercise runner = new RunnerExercise();
-                runner.Execute(ExerciseOptionHelper.GetByValue(menuOption));
+                Runner.Execute(ExerciseOptionHelper.GetByValue(menuOption));
             }
             catch (Exception)
             {
