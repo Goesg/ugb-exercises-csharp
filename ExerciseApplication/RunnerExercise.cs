@@ -18,7 +18,7 @@ public class RunnerExercise
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Erro execute Exercise :" + ex.Message);
+            Console.WriteLine($"Erro to execute {exercise} | Msg: {ex.Message}");
         }
 
     }
