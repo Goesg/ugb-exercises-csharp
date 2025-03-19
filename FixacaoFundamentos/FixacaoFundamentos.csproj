@@ -1,9 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\ExercisesCore\ExercisesCore.csproj" />
+    <ProjectReference Include="..\ExerciseApplication\ExerciseApplication.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>fixacao_fundamentos</RootNamespace>
+    <RootNamespace>FixacaoFundamentos</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
